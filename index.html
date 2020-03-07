@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -16,25 +17,25 @@
             <div class="col s12">
                 <div id="main" class="card">
                     <div class="card-content">
-                        <span class="card-title">uTask</span>
+                        <span class="card-title"><img src="img/logo.png" alt=""></span>
                         <div class="row">
                             <form id="task-form">
                                 <div class="input-field col s12">
                                     <input type="text" name="task" id="task">
-                                    <label for="task">New Task</label>
+                                    <label for="task">New Note</label>
                                 </div>
-                                <input type="submit" value="Add Task" class="btn">
+                                <input type="submit" value="Add Task" class="btn #becee5">
                             </form>
                         </div>
                     </div>
                     <div class="card-action">
-                        <h5 id="task-title">Tasks</h5>
+                        <h5 id="task-title">Notes</h5>
                         <div class="input-field col s12">
                             <input type="text" name="filter" id="filter">
-                            <label for="filter">Filter Tasks</label>
+                            <label for="filter">Filter Notes</label>
                         </div>
                         <ul class="collection"></ul>
-                        <a href="#" class="clear-tasks btn black">Clear Texts</a>
+                        <a href="#" class="clear-tasks btn">Clear Texts</a>
                     </div>
                 </div>
             </div>
