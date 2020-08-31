@@ -1,0 +1,175 @@
+$primary-color: black;
+$text-color: #fff;
+$font-weights: (
+  'regular': 400,
+  'medium': 500,
+  'bold': 600,
+);
+
+$clr-primary: #fff;
+$clr-secondary: #1a7fbe;
+$clr-light: #f4f4f4;
+$clr-dark: #333;
+$clr-warning: rgb(99, 36, 36);
+
+$spacer: 2rem;
+$size: 0.75em;
+
+$font-size-h1: 4rem;
+$font-size-h2: 3rem;
+$font-size-h3: 1.3rem;
+$font-size-p: 1rem;
+$font-size-mobile-h1: 2.5rem;
+$font-size-mobile-h2: 2.5rem;
+$font-size-mobile-h3: 1.1rem;
+$font-size-mobile-p: 1rem;
+
+$sub-item: rgb(184, 184, 184);
+
+$breakpoints: (
+  'phone-small': 350px,
+  'phone': 400px,
+  'phone-wide': 480px,
+  'phablet': 560px,
+  'tablet-small': 640px,
+  'tablet': 768px,
+  'tablet-wide': 1024px,
+  'desktop': 1248px,
+  'desktop-wide': 1470px,
+);
+
+/* HTML */
+.la-html5 {
+  color: #e44d27;
+}
+
+/* CSS */
+.la-css3 {
+  color: #369ad6;
+}
+
+.la-css3-alt {
+  color: #369ad6;
+}
+
+/* JavaScript */
+.la-js-square {
+  color: #f0db4f;
+}
+
+/* React.js */
+.la-react {
+  color: #60dbfb;
+}
+
+/* Git */
+.la-git {
+  color: #f05033;
+}
+
+/* Figma */
+.la-figma {
+  color: #a258ff;
+}
+
+/* Adobe */
+.la-edit {
+  color: #ce2d32;
+}
+
+/* Node.js */
+.la-node {
+  color: #7fbd02;
+}
+
+/* SASS */
+.la-sass {
+  color: #cd6799;
+}
+
+@mixin push--auto {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+@mixin responsive-ratio($x, $y, $pseudo: false) {
+  $padding: unquote(($y / $x) * 100 + '%');
+  @if $pseudo {
+    &:before {
+      @include pseudo($pos: relative);
+      width: 100%;
+      padding-top: $padding;
+    }
+  } @else {
+    padding-top: $padding;
+  }
+}
+
+@mixin heightfix {
+  @supports (-webkit-touch-callout: none) {
+    /* The hack for Safari */
+    height: -webkit-fill-available;
+  }
+}
+
+@mixin btn-border-drawing(
+  $color: #ccc,
+  $hover: black,
+  $width: 2px,
+  $vertical: top,
+  $horizontal: left,
+  $duration: 0.25s
+) {
+  box-shadow: inset 0 0 0 $width $color;
+  color: $color;
+  transition: color $duration $duration/3;
+  position: relative;
+
+  &::before,
+  &::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    #{$vertical}: 0;
+    #{$horizontal}: 0;
+  }
+
+  &::before {
+    $h-side: if($horizontal == 'left', 'right', 'left');
+
+    border-#{$vertical}-width: $width;
+    border-#{$h-side}-width: $width;
+  }
+
+  &::after {
+    $v-side: if($vertical == 'top', 'bottom', 'top');
+
+    border-#{$v-side}-width: $width;
+    border-#{$horizontal}-width: $width;
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      border-color: $hover;
+      transition: border-color 0s, width $duration, height $duration;
+      width: 100%;
+      height: 100%;
+    }
+
+    &::before {
+      transition-delay: 0s, 0s, $duration;
+    }
+
+    &::after {
+      transition-delay: 0s, $duration, 0s;
+    }
+  }
+}
