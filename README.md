@@ -4,6 +4,4 @@ A fast and lightweight task management app. Featuring a task list, filter, and m
 
 ## Built With
 
-* [HTML]
-* [CSS]
-* [JavaScript]
+[HTML] [CSS] [JavaScript]
