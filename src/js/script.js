@@ -4,7 +4,7 @@ const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
 const filterOption = document.querySelector('.filter-todo');
 
-//Event Listeners
+// Event Listeners
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
@@ -18,7 +18,7 @@ function addTodo(event) {
   // Todo DIV
   const todoDiv = document.createElement('div');
   todoDiv.classList.add('todo');
-  //Create LI
+  // Create LI
   const newTodo = document.createElement('li');
   newTodo.innerText = todoInput.value;
   newTodo.classList.add('todo-item');
