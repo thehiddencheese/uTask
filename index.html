@@ -32,17 +32,20 @@
             <option value="uncompleted">Uncompleted</option>
           </select>
           <h3>Saved Lists</h3>
-          <button class="add-new">Add New</button>
-          <select name="todos" class="filter-todo">
-            <option value="all">Todo List</option>
-            <option value="all">List 2</option>
-            <option value="all">List 3</option>
+          <div class="new-list-container">
+            <button class="new-list-button form-button" type="submit">
+              <i class="las la-plus-square"></i>
+            </button>
+            <input type="text" class="list-input" placeholder="Add list name" />
+          </div>
+          <select name="lists" class="task-lists">
+            <option value="all">List 1</option>
           </select>
         </div>
       </section>
       <section class="main-content grid2">
         <form>
-          <button class="todo-button" type="submit">
+          <button class="todo-button form-button" type="submit">
             <i class="las la-plus-square"></i>
           </button>
           <input type="text" class="todo-input" placeholder="Add task" />

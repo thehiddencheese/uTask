@@ -3,12 +3,16 @@ const todoInput = document.querySelector('.todo-input');
 const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
 const filterOption = document.querySelector('.filter-todo');
+const newListButton = document.querySelector('.new-list-button');
+const taskLists = document.querySelector('.task-lists');
+const listInput = document.querySelector('.list-input')
 
 // Event Listeners
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
 window.addEventListener('DOMContentLoaded', getTodos);
+newListButton.addEventListener('click', createNewList);
 
 // Functions
 
@@ -134,4 +138,11 @@ function removeLocalTodos(todo) {
   const todoIndex = todo.children[0].innerText;
   todos.splice(todos.indexOf(todoIndex), 1);
   localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function createNewList() {
+  console.log("test")
+  const newList = document.createElement('option');
+  newList.innerText = listInput.value;
+  taskLists.appendChild(newList);
 }

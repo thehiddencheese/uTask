@@ -63,24 +63,16 @@ form button {
   border-bottom: solid #eeeeee 1px;
 }
 
-form button {
+.form-button {
   color: #eeeee;
   background: white;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-form button:hover {
+.form-button:hover {
   background: #dc4c3f;
   color: white;
-}
-
-.add-new {
-  width: 100%;
-  border: none;
-  background: white;
-  padding: 0.3rem;
-  margin-bottom: 0.2rem;
 }
 
 .todo-container {
@@ -208,4 +200,28 @@ select {
 .filter-todo {
   width: 100%;
   border: solid #444 1px;
+}
+
+.new-list-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.3em;
+}
+
+.task-lists {
+  width: 100%;
+  border: solid #444 1px;
+}
+
+.new-list-button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+}
+
+.list-input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: none;
 }
