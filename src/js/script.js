@@ -5,7 +5,8 @@ const todoList = document.querySelector('.todo-list');
 const filterOption = document.querySelector('.filter-todo');
 const newListButton = document.querySelector('.new-list-button');
 const taskLists = document.querySelector('.task-lists');
-const listInput = document.querySelector('.list-input')
+const listInput = document.querySelector('.list-input');
+const deleteButton = document.querySelector('.delete-button');
 
 // Event Listeners
 todoButton.addEventListener('click', addTodo);
@@ -13,6 +14,8 @@ todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
 window.addEventListener('DOMContentLoaded', getTodos);
 newListButton.addEventListener('click', createNewList);
+deleteButton.addEventListener('click', deleteList(taskLists.value));
+
 
 // Functions
 
@@ -140,9 +143,53 @@ function removeLocalTodos(todo) {
   localStorage.setItem('todos', JSON.stringify(todos));
 }
 
-function createNewList() {
-  console.log("test")
+// Lists
+
+function createNewList(event) {
+  // Prevent form from submitting
+  event.preventDefault();
+
   const newList = document.createElement('option');
   newList.innerText = listInput.value;
   taskLists.appendChild(newList);
+  saveLocalLists(listInput.value);
+
+  // Clear Todo Input Value
+  listInput.value = '';
 }
+
+function saveLocalLists(list) {
+  // Check if thing is already in storage
+  let lists;
+  if (localStorage.getItem('lists') === null) {
+    lists = [];
+  } else {
+    lists = JSON.parse(localStorage.getItem('lists'));
+  }
+  lists.push(list);
+  localStorage.setItem('lists', JSON.stringify(lists));
+}
+
+function deleteList(list) {
+  /* let lists;
+  lists = JSON.parse(localStorage.getItem('lists'));
+  console.log(lists)
+  lists.splice(lists.indexOf(list), 1);
+  localStorage.setItem('lists', JSON.stringify(lists));
+  */
+} 
+
+// Pulls lists from local storage on page load
+(function () {
+  let lists;
+  if (localStorage.getItem('todos') === null) {
+    lists = [];
+  } else {
+    lists = JSON.parse(localStorage.getItem('lists'));
+  }
+  lists.forEach(function (list) {
+    pulledList = document.createElement('option');
+    pulledList.innerText = list;
+    taskLists.appendChild(pulledList);
+  });
+})();

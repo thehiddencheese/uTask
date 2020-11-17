@@ -43,7 +43,7 @@ nav li {
   background-color: white;
 }
 
-form {
+.add-task-form {
   width: 100%;
   min-height: 20vh;
   display: flex;
@@ -51,12 +51,12 @@ form {
   align-items: center;
 }
 
-form input {
+.add-task-form input {
   width: 80%;
 }
 
-form input,
-form button {
+.add-task-form input,
+.add-task-form button {
   padding: 0.5rem;
   font-size: 1rem;
   border: none;
@@ -202,7 +202,7 @@ select {
   border: solid #444 1px;
 }
 
-.new-list-container {
+.new-list-form {
   display: flex;
   flex-direction: row;
   margin-bottom: 0.3em;
@@ -217,6 +217,7 @@ select {
   padding: 0.5rem;
   font-size: 1rem;
   border: none;
+  margin-right: 0.3em;
 }
 
 .list-input {
@@ -224,4 +225,11 @@ select {
   padding: 0.5rem;
   font-size: 0.9rem;
   border: none;
+}
+
+.delete-button {
+  width: 100%;
+  border: none;
+  padding: 0.3em;
+  margin-top: 0.3em;
 }
