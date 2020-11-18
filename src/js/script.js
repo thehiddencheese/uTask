@@ -4,7 +4,7 @@ const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
 const filterOption = document.querySelector('.filter-todo');
 const newListButton = document.querySelector('.new-list-button');
-const taskLists = document.querySelector('.task-lists');
+const taskLists = document.getElementById('task-lists');
 const listInput = document.querySelector('.list-input');
 const deleteButton = document.querySelector('.delete-button');
 
@@ -14,10 +14,12 @@ todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
 window.addEventListener('DOMContentLoaded', getTodos);
 newListButton.addEventListener('click', createNewList);
-deleteButton.addEventListener('click', deleteList(taskLists.value));
-
+deleteButton.addEventListener('click', deleteList);
+taskLists.addEventListener('change', updateOption);
 
 // Functions
+
+let result;
 
 function addTodo(event) {
   // Prevent form from submitting
@@ -171,13 +173,18 @@ function saveLocalLists(list) {
 }
 
 function deleteList(list) {
-  /* let lists;
+  let lists;
   lists = JSON.parse(localStorage.getItem('lists'));
-  console.log(lists)
-  lists.splice(lists.indexOf(list), 1);
+  lists.splice(lists.indexOf(result), 1);
   localStorage.setItem('lists', JSON.stringify(lists));
-  */
-} 
+  window.location.reload();
+  console.log(lists);
+}
+
+function updateOption() {
+  result = document.getElementById('task-lists').value;
+  console.log(result);
+}
 
 // Pulls lists from local storage on page load
 (function () {
