@@ -19,6 +19,8 @@ taskLists.addEventListener('change', updateOption);
 
 // Functions
 
+// Todo functions
+
 let result;
 
 function addTodo(event) {
@@ -33,7 +35,7 @@ function addTodo(event) {
   newTodo.classList.add('todo-item');
   todoDiv.appendChild(newTodo);
   // Add Todo to localStorage
-  saveLocalTodos(todoInput.value);
+  saveLocalTodo(todoInput.value);
   // Check Mark Button
   const completedButton = document.createElement('button');
   completedButton.innerHTML = '<i class="lar la-check-square"></i>';
@@ -48,6 +50,28 @@ function addTodo(event) {
   todoList.appendChild(todoDiv);
   // Clear Todo Input Value
   todoInput.value = '';
+}
+
+function saveLocalTodo(todo) {
+  if (localStorage.getItem(taskLists.value) === null) {
+    let newList = 'New List';
+    saveLocalList(newList);
+    localStorage.setItem(newList, todo);
+  } else {
+    localStorage.setItem(taskLists.value, JSON.stringify(todo));
+  }
+
+  /*
+  // Check if thing is already in storage
+  let todos;
+  if (localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+  todos.push(todo);
+  localStorage.setItem('todos', JSON.stringify(todos));
+  */
 }
 
 function deleteCheck(event) {
@@ -89,18 +113,6 @@ function filterTodo(e) {
         break;
     }
   });
-}
-
-function saveLocalTodos(todo) {
-  // Check if thing is already in storage
-  let todos;
-  if (localStorage.getItem('todos') === null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(localStorage.getItem('todos'));
-  }
-  todos.push(todo);
-  localStorage.setItem('todos', JSON.stringify(todos));
 }
 
 function getTodos() {
@@ -145,58 +157,49 @@ function removeLocalTodos(todo) {
   localStorage.setItem('todos', JSON.stringify(todos));
 }
 
-// Lists
+// List functions
 
+// Creates option in UI
 function createNewList(event) {
   // Prevent form from submitting
   event.preventDefault();
 
+  // Creates option element
   const newList = document.createElement('option');
   newList.innerText = listInput.value;
   taskLists.appendChild(newList);
-  saveLocalLists(listInput.value);
+  // Saves to local storage using form input
+  saveLocalList(listInput.value);
 
   // Clear Todo Input Value
   listInput.value = '';
 }
 
-function saveLocalLists(list) {
-  // Check if thing is already in storage
-  let lists;
-  if (localStorage.getItem('lists') === null) {
-    lists = [];
-  } else {
-    lists = JSON.parse(localStorage.getItem('lists'));
-  }
-  lists.push(list);
-  localStorage.setItem('lists', JSON.stringify(lists));
+// Saves list to local storage
+function saveLocalList(list) {
+  localStorage.setItem(list, []);
 }
 
-function deleteList(list) {
-  let lists;
-  lists = JSON.parse(localStorage.getItem('lists'));
-  lists.splice(lists.indexOf(result), 1);
-  localStorage.setItem('lists', JSON.stringify(lists));
-  window.location.reload();
-  console.log(lists);
+// Deletes list from local storage and UI
+function deleteList(event) {
+  localStorage.removeItem(taskLists.value);
+  // Refreshes page to remove from drop down menu
+  location.reload();
 }
 
+// ???
 function updateOption() {
   result = document.getElementById('task-lists').value;
-  console.log(result);
 }
+
+// Other Functions
 
 // Pulls lists from local storage on page load
 (function () {
-  let lists;
-  if (localStorage.getItem('todos') === null) {
-    lists = [];
-  } else {
-    lists = JSON.parse(localStorage.getItem('lists'));
-  }
-  lists.forEach(function (list) {
+  for (i = 0; i < localStorage.length; i++) {
+    x = localStorage.key(i);
     pulledList = document.createElement('option');
-    pulledList.innerText = list;
+    pulledList.innerText = x;
     taskLists.appendChild(pulledList);
-  });
+  }
 })();
