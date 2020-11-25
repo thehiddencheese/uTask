@@ -175,24 +175,15 @@ function createNewList(event) {
   listInput.value = '';
 }
 
-// Saves list to local storage
 function saveLocalList(list) {
   localStorage.setItem(list, JSON.stringify([]));
 }
 
-// Deletes list from local storage and UI
 function deleteList(event) {
   localStorage.removeItem(taskLists.value);
   // Refreshes page to remove from drop down menu
   location.reload();
 }
-
-// ???
-function updateOption() {
-  result = document.getElementById('task-lists').value;
-}
-
-// Other Functions
 
 // Pulls lists from local storage on page load
 (function () {

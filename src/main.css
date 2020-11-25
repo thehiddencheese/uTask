@@ -7,11 +7,17 @@
   padding: 0;
 }
 
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   background-image: linear-gradient(120deg, #e9c242, #fda085);
   color: white;
   min-height: 100vh;
   font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
 }
 
 nav ul {
@@ -89,7 +95,6 @@ nav li {
 }
 
 .form-button {
-  color: #eeeee;
   background: white;
   cursor: pointer;
   -webkit-transition: all 0.3s ease;
@@ -190,7 +195,7 @@ nav li {
   opacity: 0;
 }
 
-/*CUSTOM SELECTOR */
+/* CUSTOM SELECTOR */
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -202,16 +207,13 @@ select {
   border: 0 !important;
   background-image: none;
   padding: 0.5rem;
+  color: #333;
+  cursor: pointer;
+  width: 10rem;
+  text-align: center;
+  text-align-last: center;
 }
 
-/* Custom Select */
-/* Arrow */
-/* Transition */
-/*
-.select:hover::after {
-  transform: scale(1.5);
-}
-*/
 .side-bar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -234,14 +236,6 @@ select {
   width: 80%;
   margin: 1rem;
   overflow: hidden;
-}
-
-select {
-  color: #333;
-  font-family: 'Poppins', sans-serif;
-  cursor: pointer;
-  width: 10rem;
-  text-align: center;
 }
 
 .filter-todo {
