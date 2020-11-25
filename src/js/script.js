@@ -12,10 +12,13 @@ const deleteButton = document.querySelector('.delete-button');
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
-window.addEventListener('DOMContentLoaded', getTodos);
 newListButton.addEventListener('click', createNewList);
 deleteButton.addEventListener('click', deleteList);
-taskLists.addEventListener('change', updateOption);
+taskLists.addEventListener('change', () => {
+  clearTodos('todo');
+  getTodos();
+});
+window.addEventListener('DOMContentLoaded', getTodos);
 
 // Functions
 
@@ -57,14 +60,10 @@ function saveLocalTodo(todo) {
   let list;
   if (localStorage.getItem(taskLists.value) === null) {
     list = [];
-    console.log('if');
   } else {
     list = JSON.parse(localStorage.getItem(taskLists.value));
-    console.log('else');
   }
   list.push(todo);
-  console.log('this is');
-  console.log(list);
   localStorage.setItem(taskLists.value, JSON.stringify(list));
 }
 
@@ -109,12 +108,19 @@ function filterTodo(e) {
   });
 }
 
+function clearTodos(className) {
+  var elements = document.getElementsByClassName(className);
+  while (elements.length > 0) {
+    elements[0].parentNode.removeChild(elements[0]);
+  }
+}
+
 function getTodos() {
   let todos;
-  if (localStorage.getItem('todos') === null) {
+  if (localStorage.getItem(taskLists.value) === null) {
     todos = [];
   } else {
-    todos = JSON.parse(localStorage.getItem('todos'));
+    todos = JSON.parse(localStorage.getItem(taskLists.value));
   }
   todos.forEach(function (todo) {
     const todoDiv = document.createElement('div');
@@ -141,14 +147,14 @@ function getTodos() {
 
 function removeLocalTodos(todo) {
   let todos;
-  if (localStorage.getItem('todos') === null) {
+  if (localStorage.getItem(taskLists.value) === null) {
     todos = [];
   } else {
-    todos = JSON.parse(localStorage.getItem('todos'));
+    todos = JSON.parse(localStorage.getItem(taskLists.value));
   }
   const todoIndex = todo.children[0].innerText;
   todos.splice(todos.indexOf(todoIndex), 1);
-  localStorage.setItem('todos', JSON.stringify(todos));
+  localStorage.setItem(taskLists.value, JSON.stringify(todos));
 }
 
 // List functions
