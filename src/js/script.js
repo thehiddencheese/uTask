@@ -3,14 +3,28 @@ const todoInput = document.querySelector('.todo-input');
 const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
 const filterOption = document.querySelector('.filter-todo');
+const newListButton = document.querySelector('.new-list-button');
+const taskLists = document.getElementById('task-lists');
+const listInput = document.querySelector('.list-input');
+const deleteButton = document.querySelector('.delete-button');
 
 // Event Listeners
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
+newListButton.addEventListener('click', createNewList);
+deleteButton.addEventListener('click', deleteList);
+taskLists.addEventListener('change', () => {
+  clearTodos('todo');
+  getTodos();
+});
 window.addEventListener('DOMContentLoaded', getTodos);
 
 // Functions
+
+// Todo functions
+
+let result;
 
 function addTodo(event) {
   // Prevent form from submitting
@@ -24,7 +38,7 @@ function addTodo(event) {
   newTodo.classList.add('todo-item');
   todoDiv.appendChild(newTodo);
   // Add Todo to localStorage
-  saveLocalTodos(todoInput.value);
+  saveLocalTodo(todoInput.value);
   // Check Mark Button
   const completedButton = document.createElement('button');
   completedButton.innerHTML = '<i class="lar la-check-square"></i>';
@@ -39,6 +53,18 @@ function addTodo(event) {
   todoList.appendChild(todoDiv);
   // Clear Todo Input Value
   todoInput.value = '';
+}
+
+function saveLocalTodo(todo) {
+  // Check if thing is already in storage
+  let list;
+  if (localStorage.getItem(taskLists.value) === null) {
+    list = [];
+  } else {
+    list = JSON.parse(localStorage.getItem(taskLists.value));
+  }
+  list.push(todo);
+  localStorage.setItem(taskLists.value, JSON.stringify(list));
 }
 
 function deleteCheck(event) {
@@ -82,24 +108,19 @@ function filterTodo(e) {
   });
 }
 
-function saveLocalTodos(todo) {
-  // Check if thing is already in storage
-  let todos;
-  if (localStorage.getItem('todos') === null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(localStorage.getItem('todos'));
+function clearTodos(className) {
+  var elements = document.getElementsByClassName(className);
+  while (elements.length > 0) {
+    elements[0].parentNode.removeChild(elements[0]);
   }
-  todos.push(todo);
-  localStorage.setItem('todos', JSON.stringify(todos));
 }
 
 function getTodos() {
   let todos;
-  if (localStorage.getItem('todos') === null) {
+  if (localStorage.getItem(taskLists.value) === null) {
     todos = [];
   } else {
-    todos = JSON.parse(localStorage.getItem('todos'));
+    todos = JSON.parse(localStorage.getItem(taskLists.value));
   }
   todos.forEach(function (todo) {
     const todoDiv = document.createElement('div');
@@ -126,12 +147,50 @@ function getTodos() {
 
 function removeLocalTodos(todo) {
   let todos;
-  if (localStorage.getItem('todos') === null) {
+  if (localStorage.getItem(taskLists.value) === null) {
     todos = [];
   } else {
-    todos = JSON.parse(localStorage.getItem('todos'));
+    todos = JSON.parse(localStorage.getItem(taskLists.value));
   }
   const todoIndex = todo.children[0].innerText;
   todos.splice(todos.indexOf(todoIndex), 1);
-  localStorage.setItem('todos', JSON.stringify(todos));
+  localStorage.setItem(taskLists.value, JSON.stringify(todos));
 }
+
+// List functions
+
+// Creates option in UI
+function createNewList(event) {
+  // Prevent form from submitting
+  event.preventDefault();
+
+  // Creates option element
+  const newList = document.createElement('option');
+  newList.innerText = listInput.value;
+  taskLists.appendChild(newList);
+  // Saves to local storage using form input
+  saveLocalList(listInput.value);
+
+  // Clear Todo Input Value
+  listInput.value = '';
+}
+
+function saveLocalList(list) {
+  localStorage.setItem(list, JSON.stringify([]));
+}
+
+function deleteList(event) {
+  localStorage.removeItem(taskLists.value);
+  // Refreshes page to remove from drop down menu
+  location.reload();
+}
+
+// Pulls lists from local storage on page load
+(function () {
+  for (i = 0; i < localStorage.length; i++) {
+    x = localStorage.key(i);
+    pulledList = document.createElement('option');
+    pulledList.innerText = x;
+    taskLists.appendChild(pulledList);
+  }
+})();

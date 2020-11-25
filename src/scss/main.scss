@@ -5,6 +5,7 @@ body {
   color: white;
   min-height: 100vh;
   font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
 }
 
 nav ul {
@@ -43,7 +44,7 @@ nav li {
   background-color: white;
 }
 
-form {
+.add-task-form {
   width: 100%;
   min-height: 20vh;
   display: flex;
@@ -51,26 +52,25 @@ form {
   align-items: center;
 }
 
-form input {
+.add-task-form input {
   width: 80%;
 }
 
-form input,
-form button {
+.add-task-form input,
+.add-task-form button {
   padding: 0.5rem;
   font-size: 1rem;
   border: none;
   border-bottom: solid #eeeeee 1px;
 }
 
-form button {
-  color: #eeeee;
+.form-button {
   background: white;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-form button:hover {
+.form-button:hover {
   background: #dc4c3f;
   color: white;
 }
@@ -147,7 +147,8 @@ form button:hover {
   opacity: 0;
 }
 
-/*CUSTOM SELECTOR */
+/* CUSTOM SELECTOR */
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -158,17 +159,12 @@ select {
   border: 0 !important;
   background-image: none;
   padding: 0.5rem;
+  color: #333;
+  cursor: pointer;
+  width: 10rem;
+  text-align: center;
+  text-align-last: center;
 }
-
-/* Custom Select */
-
-/* Arrow */
-/* Transition */
-/*
-.select:hover::after {
-  transform: scale(1.5);
-}
-*/
 
 .side-bar {
   display: flex;
@@ -189,15 +185,40 @@ select {
   margin: 1rem;
   overflow: hidden;
 }
-select {
-  color: #333;
-  font-family: 'Poppins', sans-serif;
-  cursor: pointer;
-  width: 10rem;
-  text-align: center;
-}
 
 .filter-todo {
   width: 100%;
   border: solid #444 1px;
+}
+
+.new-list-form {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.3em;
+}
+
+.task-lists {
+  width: 100%;
+  border: solid #444 1px;
+}
+
+.new-list-button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  margin-right: 0.3em;
+}
+
+.list-input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: none;
+}
+
+.delete-button {
+  width: 100%;
+  border: none;
+  padding: 0.3em;
+  margin-top: 0.3em;
 }
