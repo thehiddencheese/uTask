@@ -53,25 +53,19 @@ function addTodo(event) {
 }
 
 function saveLocalTodo(todo) {
-  if (localStorage.getItem(taskLists.value) === null) {
-    let newList = 'New List';
-    saveLocalList(newList);
-    localStorage.setItem(newList, todo);
-  } else {
-    localStorage.setItem(taskLists.value, JSON.stringify(todo));
-  }
-
-  /*
   // Check if thing is already in storage
-  let todos;
-  if (localStorage.getItem('todos') === null) {
-    todos = [];
+  let list;
+  if (localStorage.getItem(taskLists.value) === null) {
+    list = [];
+    console.log('if');
   } else {
-    todos = JSON.parse(localStorage.getItem('todos'));
+    list = JSON.parse(localStorage.getItem(taskLists.value));
+    console.log('else');
   }
-  todos.push(todo);
-  localStorage.setItem('todos', JSON.stringify(todos));
-  */
+  list.push(todo);
+  console.log('this is');
+  console.log(list);
+  localStorage.setItem(taskLists.value, JSON.stringify(list));
 }
 
 function deleteCheck(event) {
@@ -177,7 +171,7 @@ function createNewList(event) {
 
 // Saves list to local storage
 function saveLocalList(list) {
-  localStorage.setItem(list, []);
+  localStorage.setItem(list, JSON.stringify([]));
 }
 
 // Deletes list from local storage and UI
