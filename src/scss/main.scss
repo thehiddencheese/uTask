@@ -100,6 +100,19 @@ nav ul {
   background-color: white;
 }
 
+.title {
+  color: #444;
+  font-size: 2.2rem;
+  text-align: center;
+  margin-top: 2em;
+
+  @media (max-width: #{map-get($breakpoints, "tablet")}) {
+    font-size: 1.5rem;
+    margin-top: 1.1em;
+    padding: 0.5em;
+  }
+}
+
 .add-task-form {
   width: 100%;
   min-height: 20vh;
@@ -110,6 +123,10 @@ nav ul {
 
 .add-task-form input {
   width: 80%;
+
+  @media (max-width: #{map-get($breakpoints, "tablet")}) {
+    width: 65%;
+  }
 }
 
 .add-task-form input,
