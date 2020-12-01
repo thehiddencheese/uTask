@@ -18,6 +18,7 @@ deleteButton.addEventListener('click', deleteList);
 taskLists.addEventListener('change', () => {
   clearTodos('todo');
   getTodos();
+  showListTitle();
 });
 hamburgerMenu.addEventListener('click', openCloseMobileMenu);
 window.addEventListener('DOMContentLoaded', getTodos);
@@ -218,6 +219,16 @@ function openCloseMobileMenu() {
     mainContent.classList.remove('grid2-mobile');
     mainContent.classList.add('fade-out');
     mainContent.classList.add('grid2');
+  }
+}
+
+function showListTitle() {
+  const title = document.getElementById('title');
+
+  if (taskLists.value != 'Select a list') {
+    title.innerText = taskLists.value;
+  } else {
+    title.innerText = String.fromCharCode(160);
   }
 }
 
