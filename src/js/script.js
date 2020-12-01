@@ -7,6 +7,7 @@ const newListButton = document.querySelector('.new-list-button');
 const taskLists = document.getElementById('task-lists');
 const listInput = document.querySelector('.list-input');
 const deleteButton = document.querySelector('.delete-button');
+const hamburgerMenu = document.querySelector('#hamburger');
 
 // Event Listeners
 todoButton.addEventListener('click', addTodo);
@@ -18,13 +19,16 @@ taskLists.addEventListener('change', () => {
   clearTodos('todo');
   getTodos();
 });
+hamburgerMenu.addEventListener('click', openCloseMobileMenu);
 window.addEventListener('DOMContentLoaded', getTodos);
+
+// Global Variables
+
+let result;
 
 // Functions
 
 // Todo functions
-
-let result;
 
 function addTodo(event) {
   // Prevent form from submitting
@@ -183,6 +187,38 @@ function deleteList(event) {
   localStorage.removeItem(taskLists.value);
   // Refreshes page to remove from drop down menu
   location.reload();
+}
+
+function openCloseMobileMenu() {
+  let sideBar = document.getElementById('side-bar');
+  let mainContent = document.getElementById('main-content');
+  let body = document.querySelector('.wrapper');
+
+  //Reason for handling it this way is due to grid not working with transitions, and keyframes firing on page load
+  if (
+    sideBar.classList.contains('grid1') &&
+    mainContent.classList.contains('grid2')
+  ) {
+    body.classList.add('loading');
+    sideBar.classList.remove('fade-out');
+    sideBar.classList.remove('grid1');
+    sideBar.classList.add('fade-in');
+    sideBar.classList.add('grid1-mobile');
+    mainContent.classList.remove('fade-out');
+    mainContent.classList.remove('grid2');
+    mainContent.classList.add('fade-in');
+    mainContent.classList.add('grid2-mobile');
+    body.classList.remove('loading');
+  } else {
+    sideBar.classList.remove('fade-in');
+    sideBar.classList.remove('grid1-mobile');
+    sideBar.classList.add('fade-out');
+    sideBar.classList.add('grid1');
+    mainContent.classList.remove('fade-in');
+    mainContent.classList.remove('grid2-mobile');
+    mainContent.classList.add('fade-out');
+    mainContent.classList.add('grid2');
+  }
 }
 
 // Pulls lists from local storage on page load

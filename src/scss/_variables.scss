@@ -1,0 +1,38 @@
+$breakpoints: (
+  'phone-small': 350px,
+  'phone': 400px,
+  'phone-wide': 480px,
+  'phablet': 560px,
+  'tablet-small': 640px,
+  'tablet': 768px,
+  'tablet-wide': 1024px,
+  'desktop': 1248px,
+  'desktop-wide': 1470px,
+);
+
+@keyframes enter {
+  0% {
+    transform: translate(-50vw);
+  }
+  100% {
+    transform: 0;
+  }
+}
+
+@keyframes exit {
+  0% {
+    transform: translate(50vw);
+  }
+  100% {
+    transform: 0;
+  }
+}
+
+.loading {
+  cursor: wait; /* busy cursor feedback */
+}
+
+.loading * {
+  /* disable all mouse events on subElements */
+  pointer-events: none;
+}
