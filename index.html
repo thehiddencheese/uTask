@@ -18,12 +18,15 @@
   <body>
     <nav>
       <ul>
-        <li><img src="/src/images/logo.png" alt="" class="logo" /></li>
-        <li><h1>uTask</h1></li>
+        <li class="logo-name">
+          <img src="/src/images/logo.png" alt="" class="logo" />
+          <h1>uTask</h1>
+        </li>
+        <li id="hamburger" class="hamburger">☰</li>
       </ul>
     </nav>
     <div class="wrapper">
-      <section class="side-bar grid1">
+      <section id="side-bar" class="side-bar grid1">
         <div class="select">
           <h3>Filter</h3>
           <select name="todos" class="filter-todo">
@@ -44,7 +47,7 @@
           <button class="delete-button form-button">Delete List</button>
         </div>
       </section>
-      <section class="main-content grid2">
+      <section id="main-content" class="main-content grid2">
         <form class="add-task-form">
           <button class="todo-button form-button" type="submit">
             <i class="las la-plus-square"></i>
