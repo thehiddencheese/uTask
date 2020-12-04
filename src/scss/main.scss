@@ -10,11 +10,15 @@ body {
 }
 
 nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  z-index: 20;
 }
 
 nav ul {
@@ -102,13 +106,13 @@ nav ul {
 
 .title {
   color: #444;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   text-align: center;
-  margin-top: 2em;
+  margin-top: 3.5em;
 
   @media (max-width: #{map-get($breakpoints, "tablet")}) {
-    font-size: 1.5rem;
-    margin-top: 1.1em;
+    font-size: 1.8rem;
+    margin-top: 3.2em;
     padding: 0.5em;
   }
 }
@@ -240,13 +244,29 @@ select {
 }
 
 .side-bar {
+  position: fixed;
+  top: 60px;
+  width: 25%;
   display: flex;
   justify-content: center;
   background-color: #fafafa;
   height: 100vh;
   border-right: solid #eeeeee 1px;
   color: #333;
+  z-index: 10;
   transition: grid-area 0.7s ease-out;
+}
+
+.side-bar-closed {
+  @media (max-width: #{map-get($breakpoints, "tablet")}) {
+    width: 0%;
+  }
+}
+
+.side-bar-opened {
+  @media (max-width: #{map-get($breakpoints, "tablet")}) {
+    width: 50%;
+  }
 }
 
 .side-bar h3 {
